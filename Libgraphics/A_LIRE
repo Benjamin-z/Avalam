@@ -1,0 +1,17 @@
+
+Pour creer la librairie:
+
+>>   make all
+
+
+Pour tester la librairie:
+
+>>  make test && ./test
+(une fenetre doit s'ouvrir avec un petit dessiin: cliquer
+dedans pour la fermer)
+
+Pour installer la librairie:
+
+>> make install
+(apres avoir eventuellement modifie les variables
+LIB et INCLUDE dans le Makefile)
