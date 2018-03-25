@@ -12,4 +12,5 @@
 
  #endif /* IA_H_ */
 
+// Les coordonnees sont purement alleatoires
 void IAalea(plateau p, int *xd, int *yd, int *xa, int *ya);

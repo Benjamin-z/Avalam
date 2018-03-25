@@ -10,6 +10,8 @@
 #include "alea.h"
 #include "partie.h"
 
+
+// Les coordonnees sont purement alleatoires
 void IAalea(plateau p, int *xd, int *yd, int *xa, int *ya){
   do{
     *xd = randEntreBornes(0,TAILLE);

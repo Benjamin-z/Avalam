@@ -68,7 +68,7 @@ void dep(plateau* p, int xDep, int yDep, int xArr, int yArr){
 //0 = pas d'erreur
 //1 = taille tour depart
 //2 = taille tour d arrivee
-//3 = TODO
+//3 = ... TODO
 
 int testCoups(plateau p, int xDep, int yDep, int xArr, int yArr){
 	int err;
