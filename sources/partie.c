@@ -124,8 +124,8 @@ void testTour(plateau p, int x, int y){	//TODO
   		else if((x!=0) && (p.pos[y][x-1].taille <= 0)) jou = 0;									// tour 6
   		else if((x!=0) && (y!=0) && (p.pos[y-1][x-1].taille <= 0)) jou = 0;			// tour 7
   		else if((y!=0) && (p.pos[y-1][x].taille <= 0)) jou = 0;									// tour 8
-      else p.pos[y][x].jouable = 1;
-			jou = p.pos[y][x].jouable;
+      else jou = 1;
+			p.pos[y][x].jouable = jou;
   }
 }
 
@@ -134,7 +134,7 @@ int testPlateau(plateau p){
 	int x,y,nb_tour;
 	for(y = 0; y < TAILLE; y++){
 		for(x = 0; x < TAILLE; x++){
-			printf("tour.jou(%d,%d)=%d\n", x,y,p.pos[y][x].jouable);
+			//printf("tour.jou(%d,%d)=%d\n", x,y,p.pos[y][x].jouable);
 			testTour(p,x,y);
 			nb_tour += p.pos[y][x].jouable;
 		}

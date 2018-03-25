@@ -18,7 +18,7 @@ int main(){
 	// Joueurs
 	int joueur = 0;
 	int nb_tour = 0;
-	//int nb_coups_restants;
+	int nb_coups_restants;
 
 	// Initialisation du plateau de jeu
 	p = initPlateau();
@@ -53,8 +53,8 @@ int main(){
 		testTour(p, xDep, yDep);
 		// Deplace une tour
     dep(&p, xDep, yDep, xArr, yArr);
-		affPlatDEBUG(p);
-		//nb_coups_restants = testPlateau(p);
+		//affPlatDEBUG(p);
+		nb_coups_restants = testPlateau(p);
 	}
 	return 0;
 }
