@@ -5,19 +5,18 @@
  *      Author: ben
  */
 
-#ifndef PARTIE_H_
-#define PARTIE_H_
-
-#endif /* PARTIE_H_ */
+// Definition pour le niveau d'affichage
+#define MUET    0
+#define VERBOSE 1
 
 // Permet de modifier la taille et la couleur d'une tour x,y
 void modTour(plateau *p, int x, int y, char c, int tal, int jou);
 
-// Permet de deplacer une tour xDep, yDep en xArr,Yarr
-void dep(plateau *p, int xDep, int yDep, int xArr, int yArr);
+// Permet de deplacer une tour xd, yd en xa,ya
+void dep(plateau *p, int xd, int yd, int xa, int ya);
 
 // Teste si le coups est jouable et renvoi un booleen
-int testCoups(plateau p, int xDeb, int yDeb, int xArr, int yArr);
+int testCoups(plateau p, int xd, int yd, int xa, int ya, int verbose);
 
 // Test la fin de partie
 int finPartie(plateau p);

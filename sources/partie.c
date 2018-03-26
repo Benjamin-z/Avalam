@@ -34,68 +34,53 @@ void dep(plateau* p, int xDep, int yDep, int xArr, int yArr){
 //2 = taille tour d arrivee
 //3 = ... TODO
 
-int testCoups(plateau p, int xDep, int yDep, int xArr, int yArr){
+int testCoups(plateau p, int xDep, int yDep, int xArr, int yArr, int verbose){
 	int err;
 	int tDep = p.pos[yDep][xDep].taille;
   int tArr = p.pos[yArr][xArr].taille;
 
-	printf(ROUGE);
+	if(verbose) printf(ROUGE);
 
 	//testTour(p, xDep,yDep);
 	// err 1 si la taille de la tour de départ est inf à 0 ou sup à 5 inclus
 	if((tDep <= 0) || (tDep >= 5)){
-		printf("> Erreur taille tour de départ\n");
+		if(verbose) printf("> Erreur taille tour de départ\n");
 		err = 1;
 	}
 	// err 2 pour idem tour arrivée
 	else if((tArr <= 0) || (tArr >= 5)){
-		printf("> Erreur taille tour d'arrivée\n");
+		if(verbose) printf("> Erreur taille tour d'arrivée\n");
 		err = 2;
 	}
 	// err 3 si les coordonées se la tour de départs sont inf à 0 ou sup à 9 exclus
 	else if((xArr < 0) || (yArr > 9)){
-		printf("> Erreur coordonnées tour de départ erronées\n");
+		if(verbose) printf("> Erreur coordonnées tour de départ erronées\n");
 		err = 3;
 	}
 	// err 4 idem coordonnées tour d'arrivée
 	else if((xDep < 0) || (yDep > 9)){
-		printf("> Erreur coordonnées tour d'arrivée erronées\n");
+		if(verbose) printf("> Erreur coordonnées tour d'arrivée erronées\n");
 		err = 4;
 	}
   // err 5 si tour départ = tour arrivée
   else if((xDep == xArr) && (yDep == yArr)){
-		printf("> Erreur coordonées tour de départ et arrivée identiques\n");
+		if(verbose) printf("> Erreur coordonées tour de départ et arrivée identiques\n");
 		err = 5;
 	}
 	// err 6 si taille tour apres coups > 5
 	else if(tDep+tArr>5){
-		printf("> Erreur taille total apres coups\n");
+		if(verbose) printf("> Erreur taille total apres coups\n");
 		err = 6;
 	}
 	// Test si la tour est à proximité (test des 8 cases autour) err7 sinon
 	else if((abs(yArr-yDep) <= 1) && (abs(xArr-xDep) <= 1)) err = 0;
   else{
-		printf("> Erreur tour d'arrivée trop éloignée de la tour de départ\n");
+		if(verbose) printf("> Erreur tour d'arrivée trop éloignée de la tour de départ\n");
 		err = 7;
 	}
-	printf(RESET);
+	if(verbose) printf(RESET);
 	return err;
 }
-
-
-// Test la fin de partie
-// Renvoi le nb de coups jouable
-/*int finPartie(plateau p){
-  int x, y,fp;
-	//Test si la partie est finPartie
-	testPlateau(p);
-  for(y = 0; y < TAILLE; y++){
-  	for(x = 0; x < TAILLE; x++){
-    	fp = fp + p.pos[y][x].jouable;
-    }
-	}
-  return fp;
-}*/
 
 // Test de la tour pour voir si on peu encore la jouer
 int testTour(plateau p, int x, int y){	//TODO
