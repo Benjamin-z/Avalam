@@ -52,8 +52,8 @@ plateau initPlateau(){
 				p.pos[y][x].taille = 0;
 				// Def de la couleur à autre -> z
 				p.pos[y][x].couleur = 'z';
-                // Def de la case en non jouable
-                p.pos[y][x].jouable = 0;
+        // Def de la case en non jouable
+        p.pos[y][x].jouable = 0;
 			}
 		}
 	}

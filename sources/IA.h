@@ -13,4 +13,7 @@
  #endif /* IA_H_ */
 
 // Les coordonnees sont purement alleatoires
-void IAalea(plateau p, int *xd, int *yd, int *xa, int *ya);
+void IAalea(plateau p, int *xd, int *yd, int *xa, int *ya, int nb_coups_restants);
+
+// partie manuelle du Joueur
+void partJoueur(plateau p,int *xd, int *yd, int *xa, int *ya);

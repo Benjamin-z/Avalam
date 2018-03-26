@@ -8,53 +8,48 @@
 #include <stdio.h>
 #include "partie.h"
 #include "IA.h"
+#include "colorANSI.h"
+#include "interface.h"
+//#include <unistd.h>		// pause()
 
 int main(){
 	// Creation du plateau
 	plateau p;
   // Coordonnées pour mvt
-  int xDep, yDep;
-	int xArr, yArr;
+  int xd, yd;
+	int xa, ya;
 	// Joueurs
 	int joueur = 0;
 	int nb_tour = 0;
-	int nb_coups_restants;
+	int nb_coups_restants = 48;
+
+	int testDep;
 
 	// Initialisation du plateau de jeu
 	p = initPlateau();
-	printf("Initialisation\n");
+	initInterTXT();
 	affPlatTXT(p);
-
-  while(nb_coups_restants != 0){
+	while(1){
+  //while(nb_coups_restants != 0){
 		nb_tour++;
-		printf("Tour %d\n",nb_tour);
-		// Affichage du joueur en cours
-		printf("Joueur %d\n",joueur+1);
-		printf("%d coups restants\n",testPlateau(p));
-		joueur = !joueur; // 1 || 0
+		interTour(joueur, nb_tour);
+		printf("%d tours jouables\n",nb_coups_restants);
 
+		do{
+				partJoueur(p,&xd,&yd,&xa,&ya);
+				testDep = testCoups(p,xd,yd,xa,ya);
+				//Test de la tour de depart
+				printf("test Tour = %d\n", testTour(p, xd, yd));
+		}while(testDep!=0);
+		//IAalea(p,&xd,&yd,&xa,&ya,nb_coups_restants);
+		printf("Dep(%d,%d)\nArr(%d,%d)\n",xd,yd,xa,ya);
 
-    // Choix coordonnées
-    /*printf("tour de départ ?\n");
-    printf("x?\n");
-    scanf("%d", &xDep);
-    printf("y?\n");
-    scanf("%d", &yDep);
-
-    printf("Tour d'arrivée ?\n");
-    printf("x?\n");
-    scanf("%d", &xArr);
-    printf("y?\n");
-    scanf("%d", &yArr);*/
-		IAalea(p,&xDep,&yDep,&xArr,&yArr);
-		printf("Dep(%d,%d)\nArr(%d,%d)\n",xDep,yDep,xArr,yArr);
-
-		//Test de la tour de depart
-		testTour(p, xDep, yDep);
 		// Deplace une tour
-    dep(&p, xDep, yDep, xArr, yArr);
+    dep(&p, xd, yd, xa, ya);
+		affPlatTXT(p);
 		//affPlatDEBUG(p);
 		nb_coups_restants = testPlateau(p);
+		joueur = !joueur; // 1 || 0
 	}
 	return 0;
 }

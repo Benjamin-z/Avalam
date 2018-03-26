@@ -23,7 +23,10 @@ int testCoups(plateau p, int xDeb, int yDeb, int xArr, int yArr);
 int finPartie(plateau p);
 
 // Test de la tour pour voir si on peu encore la jouer
-void testTour(plateau p, int x, int y);
+int testTour(plateau p, int x, int y);
 
 // Test tous le plateau tour par tour et retourne le nb de tour jouables
 int testPlateau(plateau p);
+
+// Test la position de la tour. les coordonnee doivent etre entre 0 et TAILLE-1
+int testPosTour(int x, int y,plateau p);

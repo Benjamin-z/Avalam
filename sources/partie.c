@@ -20,48 +20,12 @@ void modTour(plateau *p, int x, int y, char c, int tal, int jou){
 
 // Permet de déplacer une tour xDep, yDep en xArr, yArr
 void dep(plateau* p, int xDep, int yDep, int xArr, int yArr){
-	printf(ROUGE);
-	switch (testCoups(*p, xDep, yDep, xArr, yArr)){
-		case 0:
-    	printf(RESET);
 			// Changement des caractéristique de la tour d'arrivée
 			p->pos[yArr][xArr].taille += p->pos[yDep][xDep].taille;
 			p->pos[yArr][xArr].couleur = p->pos[yDep][xDep].couleur;
 			// Mise à zéro de celle de départ
 			p->pos[yDep][xDep].taille = 0;
 			p->pos[yDep][xDep].couleur = 'z';
-      affPlatTXT(*p);
-		break;
-
-    case 1:
-			printf("Erreur taille tour de départ\n");
-		break;
-
-    case 2:
-    	printf("Erreur taille tour d'arrivée\n");
-    break;
-
-    case 3:
-    	printf("Erreur coordonnées tour de départ erronées\n");
-    break;
-
-    case 4:
-    	printf("Erreur coordonnées tour d'arrivée erronées\n");
-    break;
-
-    case 5:
-    	printf("Erreur coordonées tour de départ et arrivée identiques\n");
-    break;
-
-    case 6:
-    	printf("Erreur taille total apres coups\n");
-    break;
-
-		case 7:
-			printf("Erreur tour d'arrivée trop éloignée de la tour de départ\n");
-		break;
-  }
-  printf(RESET);
 }
 
 // Test si le coups est jouable et renvoi un code d'Erreur
@@ -75,22 +39,46 @@ int testCoups(plateau p, int xDep, int yDep, int xArr, int yArr){
 	int tDep = p.pos[yDep][xDep].taille;
   int tArr = p.pos[yArr][xArr].taille;
 
+	printf(ROUGE);
+
 	//testTour(p, xDep,yDep);
 	// err 1 si la taille de la tour de départ est inf à 0 ou sup à 5 inclus
-	if((tDep <= 0) || (tDep >= 5)) err = 1;
+	if((tDep <= 0) || (tDep >= 5)){
+		printf("> Erreur taille tour de départ\n");
+		err = 1;
+	}
 	// err 2 pour idem tour arrivée
-	else if((tArr <= 0) || (tArr >= 5)) err = 2;
+	else if((tArr <= 0) || (tArr >= 5)){
+		printf("> Erreur taille tour d'arrivée\n");
+		err = 2;
+	}
 	// err 3 si les coordonées se la tour de départs sont inf à 0 ou sup à 9 exclus
-	else if((xArr < 0) || (yArr > 9)) err = 3;
+	else if((xArr < 0) || (yArr > 9)){
+		printf("> Erreur coordonnées tour de départ erronées\n");
+		err = 3;
+	}
 	// err 4 idem coordonnées tour d'arrivée
-	else if((xDep < 0) || (yDep > 9)) err = 4;
+	else if((xDep < 0) || (yDep > 9)){
+		printf("> Erreur coordonnées tour d'arrivée erronées\n");
+		err = 4;
+	}
   // err 5 si tour départ = tour arrivée
-  else if((xDep == xArr) && (yDep == yArr)) err = 5;
-	// err 6 si taille tour apres coups < 5
-	else if(tDep+tArr>5) err = 6;
+  else if((xDep == xArr) && (yDep == yArr)){
+		printf("> Erreur coordonées tour de départ et arrivée identiques\n");
+		err = 5;
+	}
+	// err 6 si taille tour apres coups > 5
+	else if(tDep+tArr>5){
+		printf("> Erreur taille total apres coups\n");
+		err = 6;
+	}
 	// Test si la tour est à proximité (test des 8 cases autour) err7 sinon
 	else if((abs(yArr-yDep) <= 1) && (abs(xArr-xDep) <= 1)) err = 0;
-  else err = 7;
+  else{
+		printf("> Erreur tour d'arrivée trop éloignée de la tour de départ\n");
+		err = 7;
+	}
+	printf(RESET);
 	return err;
 }
 
@@ -110,26 +98,27 @@ int testCoups(plateau p, int xDep, int yDep, int xArr, int yArr){
 }*/
 
 // Test de la tour pour voir si on peu encore la jouer
-void testTour(plateau p, int x, int y){	//TODO
-	int jou;
-  if(p.pos[y][x].jouable){
+int testTour(plateau p, int x, int y){	//TODO
+	int jou, cmp;
+	// Definition de toutes les cases aux alentours
+	int x_prox[T_PROX] = {x+1,x+1,x+1,x,x-1,x-1,x-1,x};
+	int y_prox[T_PROX] = {y-1,y,y+1,y+1,y+1,y,y-1,y-1};
+
+	// Fait le test que si la tour est marquee "jouable"
+  if(testPosTour(x,y,p) && p.pos[y][x].jouable){
       // Test de la taille de la tour
       if((p.pos[y][x].taille <= 0) || (p.pos[y][x].taille >=5)) jou = 0;
       // Test d'isolement pour les 8 tours autour
-      else if((x!=8) && (y!=0) && (p.pos[y-1][x+1].taille <= 0)) jou = 0;    	// tour 1
-      else if((x!=8) && (p.pos[y][x+1].taille <= 0)) jou = 0;									// tour 2
-  		else if((x!=8) && (y!=8) && (p.pos[y+1][x+1].taille <= 0)) jou = 0;			// tour 3
-  		else if((y!=8) && (p.pos[y+1][x].taille <= 0)) jou = 0;									// tour 4
-  		else if((x!=0) && (y!=8) && (p.pos[y+1][x-1].taille <= 0)) jou = 0;			// tour 5
-  		else if((x!=0) && (p.pos[y][x-1].taille <= 0)) jou = 0;									// tour 6
-  		else if((x!=0) && (y!=0) && (p.pos[y-1][x-1].taille <= 0)) jou = 0;			// tour 7
-  		else if((y!=0) && (p.pos[y-1][x].taille <= 0)) jou = 0;									// tour 8
-      else jou = 1;
+			for (cmp  = 0; cmp < T_PROX; cmp++) {
+					if(testPosTour(x_prox[cmp],y_prox[cmp],p) && p.pos[y_prox[cmp]][x_prox[cmp]].taille < 1) jou = 0;
+					else jou = 1;
+			}
 			p.pos[y][x].jouable = jou;
   }
+	return jou;
 }
 
-// Teste tous le plateau tour par tour et retourne le nb de tours jouables
+// Teste tous le plateau tour par tour et retourne le nb de tours jouables entre 0 et 48
 int testPlateau(plateau p){
 	int x,y,nb_tour;
 	for(y = 0; y < TAILLE; y++){
@@ -140,4 +129,12 @@ int testPlateau(plateau p){
 		}
 	}
 	return nb_tour;
+}
+
+// Test la position de la tour. les coordonnee doivent etre entre 0 et TAILLE-1
+int testPosTour(int x, int y,plateau p){
+	int test;
+	if((x<0)||(x>TAILLE-1)||(y<0)||(y>TAILLE-1)) test = 0;
+	else test = 1;
+	return test;
 }

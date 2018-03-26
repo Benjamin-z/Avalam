@@ -9,14 +9,31 @@
 #include "IA.h"
 #include "alea.h"
 #include "partie.h"
+#include "stdio.h"
 
 
 // Les coordonnees sont purement alleatoires
-void IAalea(plateau p, int *xd, int *yd, int *xa, int *ya){
+void IAalea(plateau p, int *xd, int *yd, int *xa, int *ya, int nb_coups_restants){
   do{
     *xd = randEntreBornes(0,TAILLE);
     *yd = randEntreBornes(0,TAILLE);
     *xa = randEntreBornes(0,TAILLE);
     *ya = randEntreBornes(0,TAILLE);
-  }while((testCoups(p,*xd,*yd,*xa,*ya)!=0)&&(testPlateau(p)!=0));  //TODO bloquant fin de partie
+  }while((testCoups(p,*xd,*yd,*xa,*ya)!=0)&&(nb_coups_restants!=0));  //TODO bloquant fin de partie
+}
+
+// partie manuelle du Joueur
+void partJoueur(plateau p,int *xd, int *yd, int *xa, int *ya){
+  // Choix coordonnées
+  printf("tour de départ ?\n");
+  printf("x?\n");
+  scanf("%d", xd);
+  printf("y?\n");
+  scanf("%d", yd);
+
+  printf("Tour d'arrivée ?\n");
+  printf("x?\n");
+  scanf("%d", xa);
+  printf("y?\n");
+  scanf("%d", ya);
 }

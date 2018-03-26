@@ -15,6 +15,9 @@
 // Le plateau fait TAILLE par TAILLE
 #define TAILLE 9
 
+// Nb de tours a proximite
+#define T_PROX 8
+
 // Def de la structure tour définie par sa couleur et sa taille
 typedef struct {
 	char couleur;
