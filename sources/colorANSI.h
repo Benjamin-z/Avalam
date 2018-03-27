@@ -1,8 +1,6 @@
 /*
  * colorANSI.h
- *
- *  Created on: 15 févr. 2018
- *      Author: ben
+ * Cree le 15/02/18 par benjamin-z
  */
 
 #ifndef COLORANSI_H_

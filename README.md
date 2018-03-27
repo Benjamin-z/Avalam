@@ -14,6 +14,8 @@ Les déplacements se font dans toutes les directions mais seulement sur une tour
 
 La partie se termine quand plus aucun coups n'est possible. Le score se compte alors en fonction du nombre de tour possédé par le joueur. une tour de 5 compte pour 1 point comme une tour de 1. Le gagnant est celui qui a le plus de points.
 
+Vous pouvez trouver des règles plus détaillées [ici](http://jeuxstrategie.free.fr/Avalam_complet.php).
+
 ## Compilation
 
 Le projet est entièrement en C et compilé sous gcc.

@@ -1,8 +1,6 @@
 /*
  * partie.h
- *
- *  Created on: 16 févr. 2018
- *      Author: ben
+ * Cree le 16/02/18 par benjamin-z
  */
 
 // Definition pour le niveau d'affichage
@@ -22,10 +20,10 @@ int testCoups(plateau p, int xd, int yd, int xa, int ya, int verbose);
 int finPartie(plateau p);
 
 // Test de la tour pour voir si on peu encore la jouer
-int testTour(plateau p, int x, int y);
+int testTour(plateau p, int x, int y, int verbose);
 
 // Test tous le plateau tour par tour et retourne le nb de tour jouables
 int testPlateau(plateau p);
 
 // Test la position de la tour. les coordonnee doivent etre entre 0 et TAILLE-1
-int testPosTour(int x, int y,plateau p);
+int testPosTour(plateau p, int x, int y, int verbose);

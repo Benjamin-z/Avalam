@@ -1,6 +1,7 @@
 /*
-* Fichier : interface.h
-*/
+ * Fichier : interface.h
+ * Cree le 26/03/18 par benjamin-z
+ */
 
 
 #define JOUEUR 0
@@ -20,6 +21,11 @@ void interTour(int joueur, int nb_tour);
 */
 void choixMode(int *j);
 
+// partie manuelle du Joueur
+void partJoueur(plateau p,int *xd, int *yd, int *xa, int *ya);
 
 //Interface apres deplacement
 void interDep(int xd, int yd, int xa, int ya, int nb_coups_restants);
+
+// Interface de DEBUG
+void interDEBUG(plateau p, int xd, int yd, int xa, int ya);

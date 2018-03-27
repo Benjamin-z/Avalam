@@ -1,7 +1,10 @@
 /*
-* Fichier : interface.c
-*/
+ * Fichier : interface.c
+ * Cree le 26/03/18 par benjamin-z
+ */
 
+#include "plateau.h"
+#include "partie.h"
 #include "interface.h"
 #include <stdio.h>
 #include "colorANSI.h"
@@ -56,9 +59,53 @@ void choixMode(int *j){
   printf("\n"RESET);
 }
 
+// partie manuelle du Joueur
+void partJoueur(plateau p,int *xd, int *yd, int *xa, int *ya){
+  // entrer les coordonnees tant que l'entree n'est pas correct
+  do {
+    // Choix coordonnees
+    printf("tour de depart ?\n");
+    printf("x?\n");
+    scanf("%d", xd);
+    printf("y?\n");
+    scanf("%d", yd);
+
+    printf("Tour d'arrivee ?\n");
+    printf("x?\n");
+    scanf("%d", xa);
+    printf("y?\n");
+    scanf("%d", ya);
+    //interDEBUG(p,*xd,*yd,*xa,*ya);
+  } while(testCoups(p,*xd,*yd,*xa,*ya,VERBOSE)!=0);
+}
+
 //Interface apres deplacement
 // Affiche le deplacement en cours ainsi que le nb de coups encore possibles
 void interDep(int xd, int yd, int xa, int ya, int nb_coups_restants){
   printf("%d coups jouables\n",nb_coups_restants);
   printf("Tour %d,%d en %d,%d\n\n",xd,yd,xa,ya);
+}
+
+// Interface de DEBUG
+void interDEBUG(plateau p, int xd, int yd, int xa, int ya){
+  printf(ROUGE_B "---DEBUG---\n\n" RESET);
+  printf("Info Tour depart %d,%d:\n", xd, ya);
+  printf("---------------------\n");
+  printf("taille = %d\n", p.pos[yd][xd].taille);
+  printf("couleur = %c\n", p.pos[yd][xd].couleur);
+  printf("jouabilite = %d\n", p.pos[yd][xd].jouable);
+  printf("testPosTour = %d\n", testTour(p,xd,yd,VERBOSE));
+  printf("testTour = %d\n\n", testTour(p,xd,yd,VERBOSE));
+
+  printf("Info Tour Arrivee %d,%d:\n", xa, ya);
+  printf("----------------------\n");
+  printf("taille = %d\n", p.pos[ya][xa].taille);
+  printf("couleur = %c\n", p.pos[ya][xa].couleur);
+  printf("jouabilite = %d\n", p.pos[ya][xa].jouable);
+  printf("testPosTour = %d\n", testPosTour(p,xa,ya,VERBOSE));
+  printf("testTour = %d\n\n", testTour(p,xa,ya,VERBOSE));
+
+  printf("testCoups = %d\n", testCoups(p,xd,yd,xa,ya,MUET));
+
+  printf(ROUGE_B "\n---FIN DEBUG\n\n" RESET);
 }

@@ -1,12 +1,7 @@
 /*
- * IA.h
- *
- *  Created on: 12 mars. 2018
- *      Author: ben
+ * Fichier : IA.h
+ * Cree le 12/03/18 par benjamin-z
  */
 
 // Les coordonnees sont purement alleatoires
 void IAalea(plateau p, int *xd, int *yd, int *xa, int *ya, int nb_coups_restants);
-
-// partie manuelle du Joueur
-void partJoueur(plateau p,int *xd, int *yd, int *xa, int *ya);

@@ -1,9 +1,8 @@
 /*
- * main.c
- *
- *  Created on: 15 févr. 2018
- *      Author: ben
+ * Fichier : main.c
+ * Cree le 15/02/18 par benjamin-z
  */
+ #include "config.h"
 #include "plateau.h"
 #include <stdio.h>
 #include "partie.h"
@@ -18,7 +17,7 @@ int main(){
   // Coordonnées pour mvt
   int xd, yd;
 	int xa, ya;
-	// Joueurs
+	// Variable pour definir quel Joueur doit jouer (0 ou 1)
 	int joueur = 0;
 	// Definition du mode de jeu soit avec une IA soit avec un JOUEUR
 	int j[2];
@@ -43,6 +42,8 @@ int main(){
 		} else {
 			IAalea(p,&xd,&yd,&xa,&ya,nb_coups_restants);
 		}
+		// Affichage de DEBUG
+		if(DEBUG) interDEBUG(p,xd,yd,xa,ya);
 		// Affiche le deplacement en cours ainsi que le nb de coups encore possibles
 		interDep(xd,yd,xa,ya,nb_coups_restants);
 		// Deplace une tour

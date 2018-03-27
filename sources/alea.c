@@ -1,3 +1,8 @@
+/*
+ * Fichier : alea.c
+ * Cree le 16/02/18 par benjamin-z
+ */
+
 #include <time.h>
 #include <stdlib.h>
 

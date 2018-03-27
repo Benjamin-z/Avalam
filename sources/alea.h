@@ -1,3 +1,8 @@
+/*
+ * Fichier : alea.h
+ * Cree le 16/02/18 par benjamin-z
+ */
+
 //Initialise le temps pour les aléa
 void initAlea();
 
