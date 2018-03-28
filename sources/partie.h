@@ -20,7 +20,7 @@ int testCoups(plateau p, int xd, int yd, int xa, int ya, int verbose);
 int finPartie(plateau p);
 
 // Test de la tour pour voir si on peu encore la jouer
-int testTour(plateau p, int x, int y, int verbose);
+int testTour(plateau *p, int x, int y, int verbose);
 
 // Test tous le plateau tour par tour et retourne le nb de tour jouables
 int testPlateau(plateau p);

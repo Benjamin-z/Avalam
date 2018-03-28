@@ -94,8 +94,8 @@ void interDEBUG(plateau p, int xd, int yd, int xa, int ya){
   printf("taille = %d\n", p.pos[yd][xd].taille);
   printf("couleur = %c\n", p.pos[yd][xd].couleur);
   printf("jouabilite = %d\n", p.pos[yd][xd].jouable);
-  printf("testPosTour = %d\n", testTour(p,xd,yd,VERBOSE));
-  printf("testTour = %d\n\n", testTour(p,xd,yd,VERBOSE));
+  printf("testPosTour = %d\n", testTour(&p,xd,yd,VERBOSE));
+  printf("testTour = %d\n\n", testTour(&p,xd,yd,VERBOSE));
 
   printf("Info Tour Arrivee %d,%d:\n", xa, ya);
   printf("----------------------\n");
@@ -103,7 +103,7 @@ void interDEBUG(plateau p, int xd, int yd, int xa, int ya){
   printf("couleur = %c\n", p.pos[ya][xa].couleur);
   printf("jouabilite = %d\n", p.pos[ya][xa].jouable);
   printf("testPosTour = %d\n", testPosTour(p,xa,ya,VERBOSE));
-  printf("testTour = %d\n\n", testTour(p,xa,ya,VERBOSE));
+  printf("testTour = %d\n\n", testTour(&p,xa,ya,VERBOSE));
 
   printf("testCoups = %d\n", testCoups(p,xd,yd,xa,ya,MUET));
 

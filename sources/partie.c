@@ -81,22 +81,22 @@ int testCoups(plateau p, int xDep, int yDep, int xArr, int yArr, int verbose){
 }
 
 // Test de la tour pour voir si on peu encore la jouer
-int testTour(plateau p, int x, int y, int verbose){	//TODO
+int testTour(plateau *p, int x, int y, int verbose){	//TODO
 	int jou, cmp;
 	// Definition de toutes les cases aux alentours
-	int x_prox[T_PROX] = {x+1,x+1,x+1,x,x-1,x-1,x-1,x};
+	int x_prox[T_PROX] = {x+1,x+1,x+1,x,x-1,x-1,x};
 	int y_prox[T_PROX] = {y-1,y,y+1,y+1,y+1,y,y-1,y-1};
 
 	// Fait le test que si la tour est marquee "jouable"
-  if(testPosTour(p,x,y,!VERBOSE) && p.pos[y][x].jouable){
+  if(testPosTour(*p,x,y,!VERBOSE) && p->pos[y][x].jouable){
       // Test de la taille de la tour
-      if((p.pos[y][x].taille <= 0) || (p.pos[y][x].taille >=5)) jou = 0;
+      if((p->pos[y][x].taille <= 0) || (p->pos[y][x].taille >=5)) jou = 0;
       // Test d'isolement pour les 8 tours autour
 			for (cmp  = 0; cmp < T_PROX; cmp++) {
-					if(testPosTour(p,x_prox[cmp],y_prox[cmp],!VERBOSE) && p.pos[y_prox[cmp]][x_prox[cmp]].taille < 1) jou = 0;
+					if(testPosTour(*p,x_prox[cmp],y_prox[cmp],!VERBOSE) && p->pos[y_prox[cmp]][x_prox[cmp]].taille < 1) jou = 0;
 					else jou = 1;
 			}
-			p.pos[y][x].jouable = jou;
+			p->pos[y][x].jouable = jou;
   }
 	return jou;
 }
@@ -107,8 +107,8 @@ int testPlateau(plateau p){
 	for(y = 0; y < TAILLE; y++){
 		for(x = 0; x < TAILLE; x++){
 			//printf("tour.jou(%d,%d)=%d\n", x,y,p.pos[y][x].jouable);
-			testTour(p,x,y,MUET);
-			nb_tour += p.pos[y][x].jouable;
+			testTour(&p,x,y,MUET);
+			nb_tour += p.pos[y][x].jouable;	// Comptage du nb de tours jouables
 		}
 	}
 	return nb_tour;

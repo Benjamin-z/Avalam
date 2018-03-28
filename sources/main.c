@@ -2,16 +2,18 @@
  * Fichier : main.c
  * Cree le 15/02/18 par benjamin-z
  */
- #include "config.h"
+#include "config.h"
 #include "plateau.h"
 #include <stdio.h>
 #include "partie.h"
 #include "IA.h"
 #include "colorANSI.h"
 #include "interface.h"
+#include "alea.h"
 //#include <unistd.h>		// pause()
 
 int main(){
+  initAlea();
 	// Creation du plateau
 	plateau p;
   // Coordonnées pour mvt
