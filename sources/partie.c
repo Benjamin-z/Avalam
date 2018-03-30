@@ -10,10 +10,9 @@
 #include <stdlib.h> //abs()
 
 // Permet de modifier la taille et la couleur d'une tour x,y
-void modTour(plateau *p, int x, int y, char c, int tal, int jou){
+void modTour(plateau *p, int x, int y, char c, int tal){
 	p->pos[y][x].couleur = c;
 	p->pos[y][x].taille  = tal;
-  p->pos[y][x].jouable = jou;
 }
 
 // Permet de deplacer une tour xDep, yDep en xArr, yArr
@@ -31,7 +30,6 @@ void dep(plateau* p, int xDep, int yDep, int xArr, int yArr){
 //1 = taille tour depart
 //2 = taille tour d arrivee
 //3 = ... TODO
-
 int testCoups(plateau p, int xDep, int yDep, int xArr, int yArr, int verbose){
 	int err;
 	int tDep = p.pos[yDep][xDep].taille;
@@ -81,24 +79,16 @@ int testCoups(plateau p, int xDep, int yDep, int xArr, int yArr, int verbose){
 }
 
 // Test de la tour pour voir si on peu encore la jouer
-int testTour(plateau *p, int x, int y, int verbose){	//TODO
-	int jou, cmp;
-	// Definition de toutes les cases aux alentours
-	int x_prox[T_PROX] = {x+1,x+1,x+1,x,x-1,x-1,x};
-	int y_prox[T_PROX] = {y-1,y,y+1,y+1,y+1,y,y-1,y-1};
-
-	// Fait le test que si la tour est marquee "jouable"
-  if(testPosTour(*p,x,y,!VERBOSE) && p->pos[y][x].jouable){
-      // Test de la taille de la tour
-      if((p->pos[y][x].taille <= 0) || (p->pos[y][x].taille >=5)) jou = 0;
+int testTour(plateau p, int x, int y){	//TODO
+	int test = 0;
+	// Fait le test uniquement si
+	// elle a des coordonnees normales
+	// et elle a une bonne taille
+  if(testPos(p,x,y) && testTaille(p,x,y)){
       // Test d'isolement pour les 8 tours autour
-			for (cmp  = 0; cmp < T_PROX; cmp++) {
-					if(testPosTour(*p,x_prox[cmp],y_prox[cmp],!VERBOSE) && p->pos[y_prox[cmp]][x_prox[cmp]].taille < 1) jou = 0;
-					else jou = 1;
-			}
-			p->pos[y][x].jouable = jou;
-  }
-	return jou;
+			test = testVoisin(p,x,y);
+	}
+	return test;
 }
 
 // Teste tous le plateau tour par tour et retourne le nb de tours jouables entre 0 et 48
@@ -106,23 +96,32 @@ int testPlateau(plateau p){
 	int x,y,nb_tour;
 	for(y = 0; y < TAILLE; y++){
 		for(x = 0; x < TAILLE; x++){
-			//printf("tour.jou(%d,%d)=%d\n", x,y,p.pos[y][x].jouable);
-			testTour(&p,x,y,MUET);
-			nb_tour += p.pos[y][x].jouable;	// Comptage du nb de tours jouables
+			nb_tour += testTour(p,x,y);	// Comptage du nb de tours jouables
 		}
 	}
 	return nb_tour;
 }
 
 // Test la position de la tour. les coordonnee doivent etre entre 0 et TAILLE-1
-int testPosTour(plateau p, int x, int y, int verbose){
-	int test;
-	printf(ROUGE);
-	if((x<0)||(x>TAILLE-1)||(y<0)||(y>TAILLE-1)){
-		if(verbose) printf("\n> Erreur coordonnes non comprises entre %d,%d\n\n", 0, TAILLE);
-		test = 0;
+int testPos(plateau p, int x, int y){
+	return ((x>=0)&&(x<TAILLE)&&(y>=0)&&(y<TAILLE));// (1||1) && (0||)
+}
+
+// Test la taille de la tour quoi doir etre entre 1 et 4
+int testTaille(plateau p, int x, int y){
+	return ((p.pos[y][x].taille>0)&&(p.pos[y][x].taille<5));
+}
+
+// Test les tours voisines. La tour est jouable tant qu'une des tour voisine a une taille sup a 0
+int testVoisin(plateau p, int x, int y){
+	// coordonnees des 8 cases aux alentours
+	int x_prox[T_PROX] = {x+1,x+1,x+1,x,x-1,x-1,x-1,x};
+	int y_prox[T_PROX] = {y-1,y,y+1,y+1,y+1,y,y-1,y-1};
+	int i, test = 0;
+	for(i = 0; i < T_PROX; i++){
+		// Le testPos() permet d'eliminer du test toutes les cases hors du plateau
+		// Le test est vrai si au moins une tour au alentours est de taille superieur a 1
+		test |= (testPos(p,x_prox[i],y_prox[i]) && testTaille(p,x_prox[i],y_prox[i]) && (p.pos[y][x].taille + p.pos[y_prox[i]][x_prox[i]].taille < 6));
 	}
-	else test = 1;
-	printf(RESET);
 	return test;
 }

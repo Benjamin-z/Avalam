@@ -20,7 +20,6 @@
 typedef struct {
 	char couleur;
 	int taille;
-    int jouable;
 }tour;
 
 // Def de la structure plateau définie comme un tableau de tours

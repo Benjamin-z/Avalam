@@ -18,5 +18,5 @@ void IAalea(plateau p, int *xd, int *yd, int *xa, int *ya, int nb_coups_restants
     *yd = randEntreBornes(0,TAILLE);
     *xa = randEntreBornes(0,TAILLE);
     *ya = randEntreBornes(0,TAILLE);
-  }while((testCoups(p,*xd,*yd,*xa,*ya,MUET)!=0)&&(nb_coups_restants!=0));  //TODO bloquant fin de partie
+  }while((testCoups(p,*xd,*yd,*xa,*ya,!VERBOSE)!=0)&&(nb_coups_restants!=0));  //TODO bloquant fin de partie
 }

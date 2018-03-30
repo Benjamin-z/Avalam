@@ -4,11 +4,10 @@
  */
 
 // Definition pour le niveau d'affichage
-#define MUET    0
 #define VERBOSE 1
 
 // Permet de modifier la taille et la couleur d'une tour x,y
-void modTour(plateau *p, int x, int y, char c, int tal, int jou);
+void modTour(plateau *p, int x, int y, char c, int tal);
 
 // Permet de deplacer une tour xd, yd en xa,ya
 void dep(plateau *p, int xd, int yd, int xa, int ya);
@@ -20,10 +19,16 @@ int testCoups(plateau p, int xd, int yd, int xa, int ya, int verbose);
 int finPartie(plateau p);
 
 // Test de la tour pour voir si on peu encore la jouer
-int testTour(plateau *p, int x, int y, int verbose);
+int testTour(plateau p, int x, int y);
 
 // Test tous le plateau tour par tour et retourne le nb de tour jouables
 int testPlateau(plateau p);
 
 // Test la position de la tour. les coordonnee doivent etre entre 0 et TAILLE-1
-int testPosTour(plateau p, int x, int y, int verbose);
+int testPos(plateau p, int x, int y);
+
+// Test la taille de la tour quoi doir etre entre 1 et 4
+int testTaille(plateau p, int x, int y);
+
+// Test les tours voisines. La tour est jouable tant qu'une des tour voisine a une taille sup a 0
+int testVoisin(plateau p, int x, int y);

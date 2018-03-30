@@ -42,16 +42,11 @@ plateau initPlateau(){
 				p.pos[y][x].taille = 1;
 				// Def de la case en rouge ou en jaune
 				p.pos[y][x].couleur = initCoul(x, y);
-                // Def de la case en jouable
-                p.pos[y][x].jouable = 1;
-
 			}else{
 				// Def de la taille à 0
 				p.pos[y][x].taille = 0;
 				// Def de la couleur à autre -> z
 				p.pos[y][x].couleur = 'z';
-        // Def de la case en non jouable
-        p.pos[y][x].jouable = 0;
 			}
 		}
 	}
@@ -80,14 +75,13 @@ void affPlatTXT(plateau p){
 
 // Affichage ligne par ligne
 void affPlatDEBUG(plateau p){
-	int x, y, tal,jou;
+	int x, y, tal;
 	char coul;
 	for(y = 0; y < TAILLE; y++){
 		for(x = 0; x < TAILLE; x++){
 			coul = p.pos[y][x].couleur;
 			tal = p.pos[y][x].taille;
-			jou = p.pos[y][x].jouable;
-			printf("(%d , %d) : taille=%d, coul=%c, jouable=%d\n", x, y, tal, coul, jou);
+			printf("(%d , %d) : taille=%d, coul=%c\n", x, y, tal, coul);
 		}
 		printf("\n");
 	}

@@ -75,6 +75,8 @@ void partJoueur(plateau p,int *xd, int *yd, int *xa, int *ya){
     scanf("%d", xa);
     printf("y?\n");
     scanf("%d", ya);
+
+    interDEBUG(p,*xd,*yd,*xa,*ya);
     //interDEBUG(p,*xd,*yd,*xa,*ya);
   } while(testCoups(p,*xd,*yd,*xa,*ya,VERBOSE)!=0);
 }
@@ -88,24 +90,35 @@ void interDep(int xd, int yd, int xa, int ya, int nb_coups_restants){
 
 // Interface de DEBUG
 void interDEBUG(plateau p, int xd, int yd, int xa, int ya){
-  printf(ROUGE_B "---DEBUG---\n\n" RESET);
-  printf("Info Tour depart %d,%d:\n", xd, ya);
+  int x = xd;
+  int y = yd;
+  printf(ROUGE_B "\n---DEBUG---\n\n" RESET);
+  printf("Info Tour depart %d,%d:\n", xd, yd);
   printf("---------------------\n");
   printf("taille = %d\n", p.pos[yd][xd].taille);
   printf("couleur = %c\n", p.pos[yd][xd].couleur);
-  printf("jouabilite = %d\n", p.pos[yd][xd].jouable);
-  printf("testPosTour = %d\n", testTour(&p,xd,yd,VERBOSE));
-  printf("testTour = %d\n\n", testTour(&p,xd,yd,VERBOSE));
+  printf("testPos = %d\n", testPos(p,xd,yd));
+  printf("testTour = %d\n", testTour(p,xd,yd));
+  printf("testTaille = %d\n", testTaille(p,xd,yd));
+  printf("testVoisin = %d\n\n", testVoisin(p,xd,yd));
+  int x_prox[T_PROX] = {x+1,x+1,x+1,x,x-1,x-1,x-1,x};
+	int y_prox[T_PROX] = {y-1,y,y+1,y+1,y+1,y,y-1,y-1};
+	int i;
+	for(i = 0; i < T_PROX; i++){
+    if(testPos(p,x_prox[i],y_prox[i])) printf("testTaille(%d,%d) = %d\n", x_prox[i], y_prox[i], testTaille(p,x_prox[i],y_prox[i]));
+  }
+  printf("\n");
 
   printf("Info Tour Arrivee %d,%d:\n", xa, ya);
   printf("----------------------\n");
   printf("taille = %d\n", p.pos[ya][xa].taille);
   printf("couleur = %c\n", p.pos[ya][xa].couleur);
-  printf("jouabilite = %d\n", p.pos[ya][xa].jouable);
-  printf("testPosTour = %d\n", testPosTour(p,xa,ya,VERBOSE));
-  printf("testTour = %d\n\n", testTour(&p,xa,ya,VERBOSE));
+  printf("testPos = %d\n", testPos(p,xa,ya));
+  printf("testTour = %d\n", testTour(p,xa,ya));
+  printf("testTaille = %d\n", testTaille(p,xa,ya));
+  printf("testVoisin = %d\n\n", testVoisin(p,xa,ya));
 
-  printf("testCoups = %d\n", testCoups(p,xd,yd,xa,ya,MUET));
+  printf("testCoups = %d\n", testCoups(p,xd,yd,xa,ya,!VERBOSE));
 
   printf(ROUGE_B "\n---FIN DEBUG\n\n" RESET);
 }
