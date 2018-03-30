@@ -44,7 +44,7 @@ int main(){
 			partJoueur(p,&xd,&yd,&xa,&ya);
 		} else {
 			IAalea(p,&xd,&yd,&xa,&ya,nb_coups_restants);
-      interDEBUG(p,xd,yd,xa,ya);
+      if(DEBUG) interDEBUG(p,xd,yd,xa,ya);
 		}
 		// Affichage de DEBUG
 		//if(DEBUG) interDEBUG(p,xd,yd,xa,ya);

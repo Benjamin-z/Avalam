@@ -8,6 +8,7 @@
 #include "interface.h"
 #include <stdio.h>
 #include "colorANSI.h"
+#include "config.h"
 
 
 // Interface de bienvenu en terminal
@@ -76,7 +77,7 @@ void partJoueur(plateau p,int *xd, int *yd, int *xa, int *ya){
     printf("y?\n");
     scanf("%d", ya);
 
-    interDEBUG(p,*xd,*yd,*xa,*ya);
+    if(DEBUG) interDEBUG(p,*xd,*yd,*xa,*ya);
     //interDEBUG(p,*xd,*yd,*xa,*ya);
   } while(testCoups(p,*xd,*yd,*xa,*ya,VERBOSE)!=0);
 }
