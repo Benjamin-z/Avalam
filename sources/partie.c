@@ -93,7 +93,8 @@ int testTour(plateau p, int x, int y){	//TODO
 
 // Teste tous le plateau tour par tour et retourne le nb de tours jouables entre 0 et 48
 int testPlateau(plateau p){
-	int x,y,nb_tour;
+	int x,y;
+    int nb_tour = 0;
 	for(y = 0; y < TAILLE; y++){
 		for(x = 0; x < TAILLE; x++){
 			nb_tour += testTour(p,x,y);	// Comptage du nb de tours jouables

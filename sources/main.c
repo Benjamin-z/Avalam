@@ -23,7 +23,7 @@ int main(){
 	// Definition du mode de jeu soit avec une IA soit avec un JOUEUR
 	int j[2] = {IA, IA};
 	int nb_tour = 0;
-	int nb_coups_restants;
+	int nb_coups_restants = 48;
 
 	// Initialisation du plateau de jeu
 	p = initPlateau();
