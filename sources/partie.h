@@ -32,3 +32,6 @@ int testTaille(plateau p, int x, int y);
 
 // Test les tours voisines. La tour est jouable tant qu'une des tour voisine a une taille sup a 0
 int testVoisin(plateau p, int x, int y);
+
+// Calcul du score en fin de partie
+void calcScore(plateau p, int *scoreR,int *scoreJ);

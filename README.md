@@ -7,6 +7,7 @@ Ce programme est un projet scolaire de L3 en Science du Numérique à l'Universi
 Le plateau est composé de 48 pièces et disposées en alternance de couleur. Il se joue à 2 joueurs.
 
 Le but du jeu est d'empiler un pion sur une case proche possédant au moins 1 pièces et de former des tours de 1 à 5 pièces avec sa propre couleur en haut. Une tour devient inchangeable quand :
+
 * elle possède 5 pions
 * elle est isolée de toute autre tour
 
@@ -22,4 +23,5 @@ Le projet est entièrement en C et compilé sous gcc.
 
 ### Linux
 
-Pour compiler le projet, il suffit de lancer le script `compile.sh` situé dans le dossier `source` puis de lancer l’exécutable `avalam`.
+Pour compiler le projet, il suffit de lancer le script `./compile.sh` situé dans le dossier `source/` puis de lancer l’exécutable `./avalam`.
+

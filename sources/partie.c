@@ -126,3 +126,14 @@ int testVoisin(plateau p, int x, int y){
 	}
 	return test;
 }
+
+// Calcul du score en fin de partie
+void calcScore(plateau p, int *scoreR, int *scoreJ){
+	int x, y;
+	for(y = 0; y < TAILLE; y++){
+		for(x = 0; x < TAILLE; x++){
+			if(p.pos[y][x].couleur == 'r') *scoreR += 1;
+			else if(p.pos[y][x].couleur == 'j') *scoreJ += 1;
+		}
+	}
+}

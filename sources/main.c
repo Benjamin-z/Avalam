@@ -24,6 +24,9 @@ int main(){
 	int j[2] = {IA, IA};
 	int nb_tour = 0;
 	int nb_coups_restants = 48;
+	// Variables de scores
+	int scoreR= 0;
+	int scoreJ = 0;
 
 	// Initialisation du plateau de jeu
 	p = initPlateau();
@@ -56,5 +59,8 @@ int main(){
 		// Changement de joueur
 		joueur = !joueur; // 1 || 0
 	}
+	// Calcul du score des 2 joueurs
+	calcScore(p,&scoreR,&scoreJ);
+	interFin(scoreR,scoreJ);
 	return 0;
 }

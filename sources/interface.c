@@ -85,7 +85,7 @@ void partJoueur(plateau p,int *xd, int *yd, int *xa, int *ya){
 //Interface apres deplacement
 // Affiche le deplacement en cours ainsi que le nb de coups encore possibles
 void interDep(int xd, int yd, int xa, int ya, int nb_coups_restants){
-  printf("%d coups jouables\n",nb_coups_restants);
+  printf("%d cases jouables\n",nb_coups_restants);
   printf("Tour %d,%d en %d,%d\n\n",xd,yd,xa,ya);
 }
 
@@ -122,4 +122,16 @@ void interDEBUG(plateau p, int xd, int yd, int xa, int ya){
   printf("testCoups = %d\n", testCoups(p,xd,yd,xa,ya,!VERBOSE));
 
   printf(ROUGE_B "\n---FIN DEBUG\n\n" RESET);
+}
+
+// Interface de fin de partie
+void interFin(int scoreR, int scoreJ){
+  printf(BLEU);
+  printf("Score rouge = %d\n", scoreR);
+  printf("Score jaune = %d\n", scoreJ);
+  printf("---\n");
+  if(scoreR > scoreJ) printf("Le gagnant est le joueur rouge\n");
+  else if(scoreJ > scoreR) printf("Le gagnant est le joueur jaune\n");
+  else printf("C'est un match null\n");
+  printf(RESET);
 }

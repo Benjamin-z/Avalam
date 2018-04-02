@@ -29,3 +29,6 @@ void interDep(int xd, int yd, int xa, int ya, int nb_coups_restants);
 
 // Interface de DEBUG
 void interDEBUG(plateau p, int xd, int yd, int xa, int ya);
+
+// Interface de fin de partie
+void interFin(int scoreR, int scoreJ);
