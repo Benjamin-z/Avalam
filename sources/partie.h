@@ -3,6 +3,9 @@
  * Cree le 16/02/18 par benjamin-z
  */
 
+#ifndef PARTIE_H_
+#define PARTIE_H_
+
 // Definition pour le niveau d'affichage
 #define VERBOSE 1
 
@@ -35,3 +38,5 @@ int testVoisin(plateau p, int x, int y);
 
 // Calcul du score en fin de partie
 void calcScore(plateau p, int *scoreR,int *scoreJ);
+
+#endif

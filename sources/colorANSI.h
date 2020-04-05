@@ -6,9 +6,6 @@
 #ifndef COLORANSI_H_
 #define COLORANSI_H_
 
-
-
-#endif /* COLORANSI_H_ */
 #define RESET		"\x1b[0m"
 #define NOIR		"\x1b[30m"
 #define ROUGE		"\x1b[31m"
@@ -35,3 +32,5 @@
 * printf("Le texte est rouge!\n");
 * printf(RESET);
 */
+
+#endif

@@ -3,6 +3,8 @@
  * Cree le 26/03/18 par benjamin-z
  */
 
+#ifndef INTERFACE_H_
+#define INTERFACE_H_
 
 #define JOUEUR 0
 #define IA     1
@@ -32,3 +34,5 @@ void interDEBUG(plateau p, int xd, int yd, int xa, int ya);
 
 // Interface de fin de partie
 void interFin(int scoreR, int scoreJ);
+
+#endif

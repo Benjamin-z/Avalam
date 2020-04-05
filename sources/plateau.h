@@ -6,10 +6,6 @@
 #ifndef PLATEAU_H_
 #define PLATEAU_H_
 
-
-
-#endif /* PLATEAU_H_ */
-
 // Le plateau fait TAILLE par TAILLE
 #define TAILLE 9
 
@@ -40,3 +36,5 @@ void affPlatTXT(plateau p);
 
 // Affichage ligne par ligne
 void affPlatDEBUG(plateau p);
+
+#endif
