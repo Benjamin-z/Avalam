@@ -23,5 +23,5 @@ Le projet est entièrement en C et compilé sous gcc.
 
 ### Linux
 
-Pour compiler le projet, il suffit de lancer le script `./compile.sh` situé dans le dossier `source/` puis de lancer l’exécutable `./avalam`.
+Pour compiler le projet, il suffit de lancer le script `./compile.sh` situé dans le dossier `source/` puis de lancer l’exécutable `./avalam.app`.
 
